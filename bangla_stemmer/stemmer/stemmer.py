@@ -12,9 +12,11 @@ class BanglaStemmer:
     second_dict: Dict[str,List[str]]
     third_dict: Dict[str,List[str]]
     fourth_dict: Dict[str,List[str]]
+    log_print: bool
 
-    def __init__(self):
+    def __init__(self, log_print=True):
         self.grammarParser()
+        self.log_print = log_print
 
     def grammarParser(self):
         self.first_dict = grammar.sp_initial_dict
@@ -51,7 +53,8 @@ class BanglaStemmer:
         for rules in self.fourth_dict:
             result = re.search(rules, word)
             if result:
-                print('applied fourth rules..')
+                if self.log_print:
+                  print('applied fourth rules..')
                 initial_index = result.span()[0]
                 final_index = result.span()[1]
                 wordlen = len(word)
@@ -83,7 +86,8 @@ class BanglaStemmer:
         for rules in self.third_dict:
             result = re.search(rules, word)
             if result:
-                print('applied third rules..')
+                if self.log_print:
+                  print('applied third rules..')
                 initial_index = result.span()[0]
                 final_index = result.span()[1]
                 wordlen = len(word)
@@ -116,7 +120,8 @@ class BanglaStemmer:
         for rules in self.second_dict:
             result = re.search(rules, word)
             if result:
-                print('applied second rules..')
+                if self.log_print:
+                  print('applied second rules..')
                 initial_index = result.span()[0]
                 final_index = result.span()[1]
                 wordlen = len(word)
@@ -149,7 +154,8 @@ class BanglaStemmer:
         for rules in self.first_dict:
             result = re.search(rules, word)
             if result:
-                print('applied first rules..')
+                if self.log_print:
+                  print('applied first rules..')
                 initial_index = result.span()[0]
                 final_index = result.span()[1]
                 wordlen = len(word)
